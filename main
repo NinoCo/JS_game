@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="css.css"/>
+<title>Red No Touch</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
+
 canvas {
     border:1px solid #d3d3d3;
     background-color: #f1f1f1;
 }
+
 </style>
 </head>
 <body onload="startGame()">
@@ -15,16 +19,29 @@ canvas {
 var myGamePiece;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 10, 120);
-    myObstacle  = new component(10, 200, "green", 300, 120);
+    myGamePiece = new component(20, 20, "green", 220, 40);
+    myObstacle1  = new component(10, 130, "red", 420, 80);
+    myObstacle2  = new component(70, 10, "red", 360, 70);
+    myObstacle3  = new component(10, 70, "red", 350, 10);
+    myObstacle4  = new component(250, 10, "red", 100, 10);
+    myObstacle5  = new component(10, 130, "red", 100, 20);
+    myObstacle6  = new component(210, 10, "red", 10, 150);
+    myObstacle7  = new component(120, 10, "red", 170, 80);
+    myObstacle8  = new component(10, 130, "red", 280, 90);
+    myObstacle9  = new component(10, 130, "red", 10, 160);
+    myObstacle10  = new component(210, 10, "red", 80, 220);
+    myObstacle11  = new component(340, 10, "red", 20, 280);
+    myObstacle12  = new component(10, 90, "red", 350, 200);
+    myObstacle13  = new component(60, 10, "red", 360, 200);
+    myObstacle14  = new component(70, 10, "red", 290, 140);
     myGameArea.start();
 }
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.width = 440;
+        this.canvas.height = 300;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
@@ -82,21 +99,94 @@ function component(width, height, color, x, y) {
 }
 
 function updateGameArea() {
-    if (myGamePiece.crashWith(myObstacle)) {
+    if (myGamePiece.crashWith(myObstacle1)) {
         myGameArea.stop();
-    } else { 
+    } 
+
+    else if (myGamePiece.crashWith(myObstacle2)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle3)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle4)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle5)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle6)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle7)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle8)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle9)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle10)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle11)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle12)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle13)) {
+        myGameArea.stop();
+    } 
+    else if (myGamePiece.crashWith(myObstacle14)) {
+        myGameArea.stop();
+    } 
+
+    else { 
         myGameArea.clear();
-        myObstacle.update();
+        myObstacle1.update();
+        myObstacle2.update();
+        myObstacle3.update();
+        myObstacle4.update();
+        myObstacle5.update();
+        myObstacle6.update();
+        myObstacle7.update();
+        myObstacle8.update();
+        myObstacle9.update();
+        myObstacle10.update();
+        myObstacle11.update();
+        myObstacle12.update();
+        myObstacle13.update();
+        myObstacle14.update();
         myGamePiece.speedX = 0;
         myGamePiece.speedY = 0;
-        if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
-        if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
-        if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
-        if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; }
+        if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -3; }
+        if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 3; }
+        if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -3; }
+        if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 3; }
         myGamePiece.newPos();
         myGamePiece.update();
     }
 }
 </script>
+<div class="text">
+<pre>   "Back in my day we gave toddlers toys, not computers..."
+
+            Disgruntled, Old Man
+
+
+
+        "Digital vomit"
+                                            
+            Random Stranger
+
+
+
+        "10/10"
+                                                
+            IGN     
+                                                 </pre>
+</div>
 </body>
 </html>
