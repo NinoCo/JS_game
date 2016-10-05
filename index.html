@@ -16,12 +16,16 @@ canvas {
 <body onload="startGame()">
 <script>
 
-var myGamePiece, myObstacles; // declare all variables before use
+var myGamePiece, myGamePiece2, myGamePiece3, myGamePiece4,  myObstacles;
 
 function startGame() {
-    myGamePiece = new component(20, 20, "green", 220, 40);
-    myObstacles = []; // use Arrays for collections of values
-    myObstacles.push(new component(10, 130, "red", 420, 80));
+    myGamePiece = new component(20, 20, "green", 220, 40); // GamePiece top left
+    myGamePiece2 = new component(20, 20, "green", 660, 40); // GamePiece top right
+    myGamePiece3 = new component(20, 20, "green", 660, 340); // GamePiece bottom right
+    myGamePiece4 = new component(20, 20, "green", 220, 340); // GamePiece bottom left
+    
+    myObstacles = []; 
+    myObstacles.push(new component(10, 130, "red", 420, 80)); // Area top left
     myObstacles.push(new component(70, 10, "red", 360, 70));
     myObstacles.push(new component(10, 70, "red", 350, 10));
     myObstacles.push(new component(250, 10, "red", 100, 10));
@@ -35,14 +39,59 @@ function startGame() {
     myObstacles.push(new component(10, 90, "red", 350, 200));
     myObstacles.push(new component(60, 10, "red", 360, 200));
     myObstacles.push(new component(70, 10, "red", 290, 140));
+
+    myObstacles.push(new component(10, 130, "red", 860, 80)); // Area top right
+    myObstacles.push(new component(70, 10, "red", 800, 70));
+    myObstacles.push(new component(10, 70, "red", 790, 10));
+    myObstacles.push(new component(250, 10, "red", 540, 10));
+    myObstacles.push(new component(10, 130, "red", 540, 20));
+    myObstacles.push(new component(210, 10, "red", 450, 150));
+    myObstacles.push(new component(120, 10, "red", 610, 80));
+    myObstacles.push(new component(10, 130, "red", 720, 90));
+    myObstacles.push(new component(10, 130, "red", 450, 160));
+    myObstacles.push(new component(210, 10, "red", 520, 220));
+    myObstacles.push(new component(340, 10, "red", 460, 280));
+    myObstacles.push(new component(10, 90, "red", 790, 200));
+    myObstacles.push(new component(60, 10, "red", 800, 200));
+    myObstacles.push(new component(70, 10, "red", 730, 140));
+
+    myObstacles.push(new component(10, 130, "red", 860, 380)); // Area bottom right
+    myObstacles.push(new component(70, 10, "red", 800, 370));
+    myObstacles.push(new component(10, 70, "red", 790, 310));
+    myObstacles.push(new component(250, 10, "red", 540, 310));
+    myObstacles.push(new component(10, 130, "red", 540, 320));
+    myObstacles.push(new component(210, 10, "red", 450, 450));
+    myObstacles.push(new component(120, 10, "red", 610, 380));
+    myObstacles.push(new component(10, 130, "red", 720, 390));
+    myObstacles.push(new component(10, 130, "red", 450, 460));
+    myObstacles.push(new component(210, 10, "red", 520, 520));
+    myObstacles.push(new component(340, 10, "red", 460, 580));
+    myObstacles.push(new component(10, 90, "red", 790, 500));
+    myObstacles.push(new component(60, 10, "red", 800, 500));
+    myObstacles.push(new component(70, 10, "red", 730, 440));
+
+    myObstacles.push(new component(10, 130, "red", 420, 380)); // Area bottom left
+    myObstacles.push(new component(70, 10, "red", 360, 370));
+    myObstacles.push(new component(10, 70, "red", 350, 310));
+    myObstacles.push(new component(250, 10, "red", 100, 310));
+    myObstacles.push(new component(10, 130, "red", 100, 320));
+    myObstacles.push(new component(210, 10, "red", 10, 450));
+    myObstacles.push(new component(120, 10, "red", 170, 380));
+    myObstacles.push(new component(10, 130, "red", 280, 390));
+    myObstacles.push(new component(10, 130, "red", 10, 460));
+    myObstacles.push(new component(210, 10, "red", 80, 520));
+    myObstacles.push(new component(340, 10, "red", 20, 580));
+    myObstacles.push(new component(10, 90, "red", 350, 500));
+    myObstacles.push(new component(60, 10, "red", 360, 500));
+    myObstacles.push(new component(70, 10, "red", 290, 440));
     myGameArea.start();
 }
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 440;
-        this.canvas.height = 300;
+        this.canvas.width = 880;
+        this.canvas.height = 600;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
@@ -58,8 +107,14 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function() {
-      myGamePiece.x = 220; // move player..
-      myGamePiece.y = 40; // ..back to start
+      myGamePiece.x = 220; 
+      myGamePiece.y = 40; 
+      myGamePiece2.x = 660; 
+      myGamePiece2.y = 40;
+      myGamePiece3.x = 660; 
+      myGamePiece3.y = 340; 
+      myGamePiece4.x = 220; 
+      myGamePiece4.y = 340;  
     }
 }
 
@@ -101,25 +156,62 @@ function component(width, height, color, x, y) {
 }
 
 function updateGameArea() {
-  var i, myObstacle; // local variables
+  var i, myObstacle; 
   
   myGameArea.clear();
-  for(i=0;i<myObstacles.length;i++) { // Iterate through array
+  for(i=0;i<myObstacles.length;i++) { 
     myObstacle = myObstacles[i];
     myObstacle.update();
     if (myGamePiece.crashWith(myObstacle)) {
         myGameArea.stop();
     }
+    else if (myGamePiece2.crashWith(myObstacle)) {
+        myGameArea.stop();
+    }
+    else if (myGamePiece3.crashWith(myObstacle)) {
+        myGameArea.stop();
+    }
+    else if (myGamePiece.crashWith(myObstacle)) {
+        myGameArea.stop();
+    }
+
   }
 
   myGamePiece.speedX = 0;
   myGamePiece.speedY = 0;
-  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -3; }
-  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 3; }
-  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -3; }
-  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 3; }
+  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
+  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
+  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
+  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
   myGamePiece.newPos();
   myGamePiece.update();
+
+  myGamePiece2.speedX = 0;
+  myGamePiece2.speedY = 0;
+  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
+  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
+  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
+  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
+  myGamePiece2.newPos();
+  myGamePiece2.update();
+
+  myGamePiece3.speedX = 0;
+  myGamePiece3.speedY = 0;
+  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
+  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
+  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
+  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
+  myGamePiece3.newPos();
+  myGamePiece3.update();
+
+  myGamePiece4.speedX = 0;
+  myGamePiece4.speedY = 0;
+  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
+  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
+  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
+  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
+  myGamePiece4.newPos();
+  myGamePiece4.update();
 }
 
 startGame();
