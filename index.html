@@ -16,14 +16,15 @@ canvas {
 <body onload="startGame()">
 <script>
 
-var myGamePiece, myGamePiece2, myGamePiece3, myGamePiece4,  myObstacles;
+var myGamePiece, myObstacles;
 
 function startGame() {
-    myGamePiece = new component(20, 20, "green", 220, 40); // GamePiece top left
-    myGamePiece2 = new component(20, 20, "green", 660, 40); // GamePiece top right
-    myGamePiece3 = new component(20, 20, "green", 660, 340); // GamePiece bottom right
-    myGamePiece4 = new component(20, 20, "green", 220, 340); // GamePiece bottom left
-    
+    myGamePieces = [];
+    myGamePieces.push(new component(20, 20, "green", 220, 40)); // GamePiece top left
+    myGamePieces.push(new component(20, 20, "green", 660, 40)); // GamePiece top right
+    myGamePieces.push(new component(20, 20, "green", 660, 340)); // GamePiece bottom right
+    myGamePieces.push(new component(20, 20, "green", 220, 340)); // GamePiece bottom left
+
     myObstacles = []; 
     myObstacles.push(new component(10, 130, "red", 420, 80)); // Area top left
     myObstacles.push(new component(70, 10, "red", 360, 70));
@@ -107,15 +108,14 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function() {
-      myGamePiece.x = 220; 
-      myGamePiece.y = 40; 
-      myGamePiece2.x = 660; 
-      myGamePiece2.y = 40;
-      myGamePiece3.x = 660; 
-      myGamePiece3.y = 340; 
-      myGamePiece4.x = 220; 
-      myGamePiece4.y = 340;  
-    }
+        myGamePieces[0].x = 220; 
+        myGamePieces[0].y = 40; 
+        myGamePieces[1].x = 660; 
+        myGamePieces[1].y = 40;
+        myGamePieces[2].x = 660; 
+        myGamePieces[2].y = 340; 
+        myGamePieces[3].x = 220; 
+        myGamePieces[3].y = 340;
 }
 
 function component(width, height, color, x, y) {
@@ -156,62 +156,26 @@ function component(width, height, color, x, y) {
 }
 
 function updateGameArea() {
-  var i, myObstacle; 
-  
-  myGameArea.clear();
-  for(i=0;i<myObstacles.length;i++) { 
-    myObstacle = myObstacles[i];
-    myObstacle.update();
+var i, j, myObstacle, myGamePiece;
+for(i=0;i<myObstacles.length;i++) { 
+  myObstacle = myObstacles[i];
+  myObstacle.update();
+  for(j=0;j<myGamePieces;j++) {
+    myGamePiece = myGamePieces[j];
     if (myGamePiece.crashWith(myObstacle)) {
         myGameArea.stop();
     }
-    else if (myGamePiece2.crashWith(myObstacle)) {
-        myGameArea.stop();
-    }
-    else if (myGamePiece3.crashWith(myObstacle)) {
-        myGameArea.stop();
-    }
-    else if (myGamePiece.crashWith(myObstacle)) {
-        myGameArea.stop();
-    }
-
   }
+}
 
-  myGamePiece.speedX = 0;
-  myGamePiece.speedY = 0;
+  myGamePiece[].speedX = 0;
+  myGamePiece[].speedY = 0;
   if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
   if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
   if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
   if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
-  myGamePiece.newPos();
-  myGamePiece.update();
-
-  myGamePiece2.speedX = 0;
-  myGamePiece2.speedY = 0;
-  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
-  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
-  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
-  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
-  myGamePiece2.newPos();
-  myGamePiece2.update();
-
-  myGamePiece3.speedX = 0;
-  myGamePiece3.speedY = 0;
-  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
-  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
-  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
-  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
-  myGamePiece3.newPos();
-  myGamePiece3.update();
-
-  myGamePiece4.speedX = 0;
-  myGamePiece4.speedY = 0;
-  if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
-  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
-  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
-  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
-  myGamePiece4.newPos();
-  myGamePiece4.update();
+  myGamePiece[].newPos();
+  myGamePiece[].update();
 }
 
 startGame();
